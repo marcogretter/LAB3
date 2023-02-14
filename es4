@@ -1,0 +1,42 @@
+#include <stdio.h>
+#define N 3
+int main() {
+    
+    int M[N][N]={3,5,7,
+                 9,2,3,
+                 6,1,8};
+    int r,c,x,y,num=0,cont=0,si=1;
+    
+    printf("Inserisci numero della riga:\n");
+    scanf("%d",&x);
+    printf("Inserisci numero della colonna:\n");
+    scanf("%d",&y);
+    /*indico all'utente che numero ha scelto*/
+    printf("Hai selezionato il numero: %d\n",M[x][y]);
+    num=M[x][y];
+    /*se il numero è il maggiore di tutta la sua colonna è cont=1*/
+    for(c=0;c<N;c++){
+        if(num>=M[x][c])
+            si=1;
+        else
+            si=0;
+    }
+    if(si==1)
+        cont++;
+    
+    /*se il numero è maggiore di tutti gli altri sulla stessa riga è cont=2 se era così anche per le colonne e cont=1 se è così solo per le righe*/
+    for(r=0;r<N;r++){
+        if(num>=M[r][y])
+            si=1;
+        else
+            si=0;
+    }
+    if(si==1)
+            cont++;
+    /*Stampo OK se cont=2, altrimenti stampa NON OK*/
+    if(cont==2)
+        printf("OK\n");
+    else
+        printf("NON OK\n");
+    return 0;
+}
