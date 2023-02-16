@@ -1,0 +1,44 @@
+#include <stdio.h>
+#define N 4
+
+int verificaSottoMat(int M[][N],int riga,int colonna,int h);
+int f(int M[][N],int h,int k);
+
+int main(){
+    int M[N][N]={1,2,0,1,
+                 0,3,0,2,
+                 0,3,1,2,
+                 1,1,2,4};
+//TODO
+    int h,k;
+    printf("Inserisci grandezza delle sottomatrici:\n");
+    scanf("%d",&h);
+    printf("Quanti 1 deve contenere la sottomatrice?\n");
+    scanf("%d",&k);
+    
+    printf("Il numero di sottomatrici %dx%d con %d valori uguali a 1 è: %d\n",h,h,k,f(M, h, k));
+return 0;
+}
+
+int f(int M[][N],int h,int k)
+{
+    int r,c,cont=0;
+    for (r=0; r<N-h+1; r++) {
+        for (c=0; c<N-h+1; c++) {
+            if(verificaSottoMat(M, r, c, h)==k)
+                cont++;
+        }
+    }
+    return cont;
+}
+int verificaSottoMat(int M[][N],int riga,int colonna,int h)
+{
+    int r,c,cont=0;
+    for (r=riga; r<riga+h; r++) {
+        for (c=colonna; c<colonna+h; c++) {
+            if(M[r][c]==1)
+                cont++;
+        }
+    }
+    return cont;
+}
