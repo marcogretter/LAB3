@@ -1,0 +1,44 @@
+#include <stdio.h>
+#define N 6
+
+int verifica(int M[][N],int riga,int colonna);
+int f(int M[][N]);
+
+int main(){
+    int M[N][N]={1,12,0,7,8,8,
+                 4,3,5,5,5,4,
+                 3,8,5,5,5,4,
+                 6,9,5,5,5,9,
+                 0,1,2,3,4,4,
+                 6,7,8,9,4,4};
+
+    //TODO
+    printf("%d\n",f(M));
+    return 0;
+}
+int f(int M[][N])
+{
+    int r,c,tmp=0;
+    for (r=0; r<N; r++) {
+        for (c=0; c<N; c++) {
+            if(tmp<verifica(M, r, c))
+                tmp=verifica(M, r, c);
+        }
+    }
+    return tmp;
+}
+int verifica(int M[][N],int riga,int colonna)
+{
+    int r,c,i,vero=1;
+    for (i=0; i<N; i++) {
+        if(vero==3)
+            return i;
+        for (r=riga; r<=riga+i; r++) {
+            for (c=colonna; c<=colonna+i; c++) {
+                if(M[r][c]!=M[r][c-1])
+                    vero=3;
+            }
+        }
+    }
+    return 0;
+}
